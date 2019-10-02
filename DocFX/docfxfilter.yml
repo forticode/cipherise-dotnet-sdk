@@ -1,0 +1,6 @@
+apiRules:
+  - exclude:
+     uidRegex: ^System\.Object
+     type: Type
+  - exclude: # Dont include SDK_VERSION_N in the documentation.
+     uidRegex: ^Cipherise\.CipheriseSP\.SDK_VERSION_\d+_*\d*

@@ -1,0 +1,90 @@
+<Project>
+    <PropertyGroup>
+        <IsWindows>false</IsWindows>
+        <IsOSX>false</IsOSX>
+        <IsLinux>false</IsLinux>
+        <IsWindows Condition="'$(OS)' == 'Windows_NT'">true</IsWindows>
+    </PropertyGroup>
+    
+    <PropertyGroup Condition="'$(MSBuildRuntimeType)' == 'Core'">
+        <IsOSX Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))' == 'true'">true</IsOSX>
+        <IsLinux Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">true</IsLinux>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(CipheriseSDKPackage)' != 'true'">
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <OutputPath>..\bin\$(Configuration)\</OutputPath>
+        <IntermediateOutputPath>..\bin\obj\$(Configuration)\</IntermediateOutputPath>
+        <WarningsAsErrors>true</WarningsAsErrors>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <RunCodeAnalysis>false</RunCodeAnalysis>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <DefineConstants>TRACE</DefineConstants>
+        <RunCodeAnalysis>false</RunCodeAnalysis>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="Exists('$(SolutionDir)CipheriseSDKPublic.snk')">
+        <SignAssembly>true</SignAssembly>
+        <DelaySign>false</DelaySign>
+        <PublicSign>true</PublicSign>
+        <AssemblyOriginatorKeyFile>CipheriseSDKPublic.snk</AssemblyOriginatorKeyFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="Exists('..\CipheriseCommon\Cipherise.ico')">
+        <ApplicationIcon>..\CipheriseCommon\Cipherise.ico</ApplicationIcon>
+    </PropertyGroup>
+
+    <!-- Assembly info and package info -->
+     <PropertyGroup>
+         <Authors>Forticode</Authors>
+         <Company>Forticode</Company>
+         <Version>6.0.0.0</Version>
+         <!--<PackageId>Cipherise SDK</PackageId>  -->
+         <Product>Cipherise .NET SDK</Product>
+         <Copyright>Copyright © 2019</Copyright>
+         <!--<PackageLicenseUrl>Deprecated</PackageLicenseUrl>-->
+         <PackageProjectUrl>https://developer.cipherise.com</PackageProjectUrl>
+         <PackageIconUrl>https://developer.cipherise.com/favicon.ico</PackageIconUrl>
+         <RepositoryUrl>github.com/forticode</RepositoryUrl>
+         <RepositoryType>git</RepositoryType>
+
+         <PackageTags>Cipherise;Forticode;authentication;authorisation;password;passwordless;multi;multifactor;mutli-factor;logon;login;saml;onetick;bidirectional;bi-directional</PackageTags>
+
+         <PackageReleaseNotes>Cipherise .NET SDK - Initial public release.</PackageReleaseNotes>
+         <Description>
+             Cipherise does away with passwords and usernames, giving your customers an easy, secure
+             login with their mobile device. With a simple, quick scan of a WaveCode, they can achieve
+             multi-factor authentication in a single action.
+
+             * Move towards a passwordless experience for your customers.
+             * No more complicated passwords and usernames.
+             * A simple, fast experience that is consistent across multiple services.
+             * No more credential sharing.
+
+             By design Cipherise decentralises critical information (identity, credentials and critical
+             data). Each user's credentials are encrypted and stored in a secure enclave on their personal
+             device. The credentials are never stored elsewhere or transmitted through a browser. This
+             protects your customers' data and digital identity.
+
+             * All Cipherise authentication transactions are decentralised and completed on a user's mobile phone.
+             * Credentials are stored locally on the user's phone in encrypted form, not centrally with the service provider.
+             * Credentials are never transmitted or stored outside of the user's phone.
+         </Description>
+     </PropertyGroup>
+</Project>

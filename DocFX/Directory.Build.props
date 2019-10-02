@@ -1,0 +1,62 @@
+<Project>
+    <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+    <PropertyGroup Condition="!$(IsWindows)">
+        <BuildDocFx>false</BuildDocFx>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <!-- DocFX Log and output folder-->
+        <DocFXOutputFolder>$(OutputPath)$(TargetFramework)\DocFX\</DocFXOutputFolder>
+        <LogFile>$(DocFXOutputFolder)DocFXlog.txt</LogFile>
+        <LogLevel>Error</LogLevel>
+        <MetadataOutputFolder>$(DocFXOutputFolder).</MetadataOutputFolder>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="api\index.md" />
+        <None Include="articles\sample.md" />
+        <None Include="articles\toc.md" />
+        <None Include="docfx.json" />
+        <None Include="docfxfilter.yml" />
+        <None Include="index.md" />
+        <None Include="license\license.md" />
+        <None Include="license\toc.md" />
+        <None Include="startpage\*.md" />
+        <None Include="startpage\*.cs" />
+        <None Include="toc.yml" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="images\cropped-icon_512-1-192x192.png" />
+        <Content Include="images\Forticode_logo_update.png" />
+    </ItemGroup>
+
+    <Target Name="CleanDocFXWebsite" AfterTargets="AfterClean">
+        <Message Text="CleanDocFXWebsite: $(DocFXOutputFolder)" Importance="high"/>
+        <RemoveDir Directories="$(DocFXOutFolder)" />
+    </Target>
+
+    <PropertyGroup>
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
+        <EnableDefaultItems>false</EnableDefaultItems>
+        <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
+
+        <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
+        <CopyBuildOutputToPublishDirectory>false</CopyBuildOutputToPublishDirectory>
+        <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
+
+        <SkipCopyBuildProduct>true</SkipCopyBuildProduct>
+
+    </PropertyGroup>
+
+    <Target Name="CreateManifestResourceNames" />
+    <Target Name="CoreCompile" />
+    <!--
+  <Target Name="CreateManifestResourceNames" />
+  <Target Name="CoreCompile" />
+  <Target Name="CopyFilesToOutputDirectory" />
+  <Target Name="CopyFilesToPublishDirectory" />
+-->
+</Project>

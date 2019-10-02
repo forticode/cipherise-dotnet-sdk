@@ -1,0 +1,61 @@
+{
+  "metadata": [
+    {
+        "src": [
+            {
+                "files": [ "CipheriseSDK.csproj" ],
+                "src": "../CipheriseSDK"
+            }
+        ],
+
+        "dest": "obj/api",
+        "filter": "docfxfilter.yml",
+        "force": true
+    }
+  ],
+    "build": {
+        "content": [
+            {
+                "files": [ "**/**.yml" ],
+                "src": "obj/api",
+                "dest": "api"
+            },
+
+            {
+                "files": [
+                    "api/*.md",
+                    "articles/*.md",
+                    "startpage/*.md",
+                    "toc.yml",
+                    "*.md"
+                ],
+
+                "src": ".",
+                "dest": ".",
+                "exclude": [ "obj/**" ]
+            }
+        ],
+        "resource": [
+            {
+                "files": [ "images/**" ],
+                "src": ".",
+                "dest": ".",
+                "exclude": [ "obj/**" ]
+            }
+        ],
+        "globalMetadata": {
+            "_appTitle": "Cipherise SDK",
+            "_appLogoPath": "./images/Forticode_logo_update.png",
+            "_appFaviconPath": "./images/cropped-icon_512-1-192x192.png",
+            "_appFooter": "Copyright &copy 2019 Forticode"
+        },
+        "__!__overwrite": [
+            {
+                "files": [ "apidoc/**.md" ],
+                "exclude": [ "obj/**" ]
+            }
+        ],
+        "dest": "../bin/DocFX/_CipheriseSite",
+        "template": [ "default" ]
+    }
+}
