@@ -1,4 +1,3 @@
----
 ## Getting Started
 This SDK interacts with a Cipherise Server to perform service registrations, user enrolments, and user authentications.
 

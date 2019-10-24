@@ -1,4 +1,3 @@
----
 ## Introduction
 Cipherise does away with passwords and usernames, giving your customers an easy, secure
 login with their mobile device. With a simple, quick scan of a WaveCode, they can achieve 

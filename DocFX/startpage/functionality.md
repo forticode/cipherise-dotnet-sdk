@@ -1,4 +1,3 @@
----
 ## Cipherise Functionality
 
   * [Querying a Cipherise server](#QueryCS)

@@ -18,3 +18,7 @@
 .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-text:hover {
     color: #000000;
 }
+
+h1, h2 {
+    border-bottom: 1px solid #cccccc;
+}

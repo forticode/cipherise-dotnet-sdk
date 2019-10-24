@@ -88,6 +88,42 @@
         <RemoveDir Directories=".\obj\api" />
     </Target>
 
+    <Target Name="DocFX_UpdateVersionMD" AfterTargets="DocFX_BeforeBuild" Condition ="$(BuildDocFx)">
+        <XmlPeek 
+                 XmlInputPath="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))"
+                 Query="Project/PropertyGroup/Version/text()">
+            <Output TaskParameter="Result" ItemName="CipheriseSDKVersion" />
+        </XmlPeek>
+
+        <PropertyGroup>
+            <CipheriseSDKVersion>v@(CipheriseSDKVersion)</CipheriseSDKVersion>
+            <CipheriseSDKVersion>$(CipheriseSDKVersion.SubString(0,$(CipheriseSDKVersion.LastIndexOf('.'))))</CipheriseSDKVersion>
+        </PropertyGroup>
+
+        <Message Importance="high" Text="CipheriseSDKVersion = $(CipheriseSDKVersion)"/>
+        <WriteTextToFile FilePath="startpage\version.md"  Text="$(CipheriseSDKVersion)" />
+    </Target>
+
+    <UsingTask
+        TaskName="WriteTextToFile"
+        TaskFactory="CodeTaskFactory"
+        AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll" >
+        <ParameterGroup>
+            <FilePath ParameterType="System.String" Required="true" />
+            <Text     ParameterType="System.String" Required="true" />
+        </ParameterGroup>
+        <Task>
+            <Using Namespace="System" />
+            <Using Namespace="System.IO" />
+            <Code Type="Fragment" Language="cs">
+                <![CDATA[
+                System.IO.File.WriteAllText(FilePath, Text);
+                return true;
+                ]]>
+            </Code>
+        </Task>
+    </UsingTask>
+
     <Target Name="CreateManifestResourceNames" />
     <Target Name="CoreCompile" />
     <!--

@@ -1,5 +1,5 @@
 
-# Cipherise .NET SDK
+# Cipherise .NET SDK [!include[I_VERSION](..\startpage\version.md)]
 This documentation decribes the API in the [Cipherise SDK](Cipherise.html) which is used to perform service registrations, user enrolments, and user authentications.
 
 > [!TIP]

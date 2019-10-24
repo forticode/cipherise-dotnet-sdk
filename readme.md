@@ -1,6 +1,4 @@
-# **Cipherise .NET SDK**
-
----
+# **Cipherise .NET SDK** v6.3.0
 ## Introduction
 Cipherise does away with passwords and usernames, giving your customers an easy, secure
 login with their mobile device. With a simple, quick scan of a WaveCode, they can achieve 
@@ -19,8 +17,6 @@ protects your customers' data and digital identity.
  * All Cipherise authentication transactions are decentralised and completed on a user's mobile phone.
  * Credentials are stored locally on the user's phone in encrypted form, not centrally with the service provider.
  * Credentials are never transmitted or stored outside of the user's phone.
-
----
 ## Build
 
 The Cipherise .NET SDK is built using the Visual Studio 2017 solution file CipheriseDotNetSDK.sln which produces the following binaries:
@@ -38,7 +34,6 @@ The Cipherise .NET SDK depends on the following 3rd party libraries:
 |:-:|:-|
 |BouncyCastle.Crypto.dll| The 3rd party crypto library used by the Cipherise SDK to perform the PKI. |
 
-
 ## Installation
 
 For installation instruction please visit the [Cipherise SDK Nuget](https://www.nuget.org/packages/CipheriseSDK/) page for the official builds.
@@ -53,8 +48,6 @@ dotnet add package CipheriseSDK
 ```
 
 Next, modify Program.cs to call the Cipherise SDK API.
-
----
 ## Getting Started
 This SDK interacts with a Cipherise Server to perform service registrations, user enrolments, and user authentications.
 
@@ -84,7 +77,6 @@ For users to be able to enrol and authenticate to a Service Provider one or more
 services need to be created:
   * [Creating new services](#NewService)
   * [Revoking services](#RevokeService)
-
 ### User Management
 In order to interact with Cipherise, a user must be enrolled to a service. This 
 interaction is the key point in which the trust relationship is established. Future authentications
@@ -99,7 +91,6 @@ Some services need not require a personalised account, and it may be sufficient 
 instantaneous creation of an anonymous account, simply by the scanning of a WaveEnrol code.
   * [Enrolling a user to a service](#EnrolUser)
   * [Revoking users from a service](#RevokeUser)
-
 ### Authentications
 
 Once a user is enrolled to a Cipherise service, authentication is then allowed.
@@ -115,7 +106,6 @@ scanned by a user. Once authenticated, the Service Provider will be informed of 
 username.
   * [Wave authentication](#WaveAuth)
   * [Push authentication](#PushAuth)
-
 ### Advanced Features  
 
 Payload is a feature where a Service Provider can encrypt and send data to a user's device
@@ -127,9 +117,6 @@ the Service Provider's storage where the consequences of a hack are far further 
 Examples of where payload could be used include credit card payment details for a regularly used
 service, address details or other personally identifying details.
   * [Payload](#Payload)
-
-
----
 ## Cipherise Functionality
 
   * [Querying a Cipherise server](#QueryCS)
@@ -180,7 +167,6 @@ private class ServerInfo : CSError, ICipheriseInfo
     }
 }
 ```
-
 ### <a name="NewService"></a>Creating new services
 The first step to integrating your Service Provider with Cipherise is to register a service. 
 A service can be registered using [ICipheriseServiceProvider.Register()](https://developer.cipherise.com/resources/docs/dotnet/api/Cipherise.ICipheriseServiceProvider.html#Cipherise_ICipheriseServiceProvider_Register_System_String_Cipherise_ICipheriseError_):
@@ -205,7 +191,6 @@ static async Task<string> CipheriseExample(string strCipheriseServer)
 > **_NOTE_**
 > It is the Service Providers responsibility to persist the service ID. To reuse the same service pass its service ID to
 > [CreateServiceProvider()](https://developer.cipherise.com/resources/docs/dotnet/api/Cipherise.CipheriseSP.html#Cipherise_CipheriseSP_CreateServiceProvider_System_String_System_String_System_String_System_Int32_).
-
 ### <a name="RevokeService"></a>Revoking services
 A Service Provider can revoke any services it owns by calling
 [ICipheriseServiceProvider.Revoke()](https://developer.cipherise.com/resources/docs/dotnet/api/Cipherise.ICipheriseServiceProvider.html#Cipherise_ICipheriseServiceProvider_Revoke_Cipherise_ICipheriseError_).
@@ -228,7 +213,6 @@ static async Task<string> CipheriseExample(string strCipheriseServer, string str
 
 > **_WARNING_**
 > Revoking a service will disable it and as such deny future enrolments and authentications.
-
 ### <a name="EnrolUser"></a>Enrolling a user to a service
 To enrol a user into a service the follow steps need to occur:
 
@@ -359,7 +343,6 @@ private class EnrolUser : CSPayload, ICipheriseEnrolUser
     }
 }
 ```
-
 ### <a name="RevokeUser"></a>Revoking users from a service
 A Service Provider can revoke a user by calling
 [ICipheriseServiceProvider.RevokeUser()](https://developer.cipherise.com/resources/docs/dotnet/api/Cipherise.ICipheriseServiceProvider.html#Cipherise_ICipheriseServiceProvider_RevokeUser_Cipherise_ICipheriseRevokeUser_).
@@ -431,7 +414,6 @@ class RevokeUser : CSError, ICipheriseRevokeUser
 
 > **_WARNING_**
 > Revoking a user will deny any future authentications to the service. The user must re-enrol to the service to allow authentications.
-
 ### <a name="WaveAuth"></a>Wave authentication
 Wave authentication is where the user 'waves' their device over a WaveCode to trigger
 the authentication process.
@@ -639,7 +621,6 @@ private class WaveAuth : AuthenticateBase, ICipheriseAuthenticateWave
     }
 }
 ```
-
 ### <a name="PushAuth"></a>Push authentication
 Push authentication is a Cipherise authentication that is sent to a particular user's device. This 
 can only be used when the Service wants to target a specific user and the username and deviceid are
@@ -887,7 +868,6 @@ private class DeviceData : CSError, ICipheriseDevice
 ```
 
 
-
 ### <a name="Payload"></a>Payload
 
 Payload data can be supplied to the user's device during 
@@ -930,6 +910,3 @@ class CSPayload : CSError, ICipherisePayload
     }
 }
 ```
-
-
-

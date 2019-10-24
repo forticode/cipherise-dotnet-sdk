@@ -39,7 +39,11 @@
         <RunCodeAnalysis>false</RunCodeAnalysis>
     </PropertyGroup>
 
-    <PropertyGroup Condition="Exists('..\CipheriseSDKPublic.snk')">
+    <!--
+         Added "AND FALSE" to disable public signing as it causes issues 
+         with BouncyCastle.Crypto. As it requires it to be strongly-named.
+    -->
+    <PropertyGroup Condition="Exists('CipheriseSDKPublic.snk') AND FALSE">
         <SignAssembly>true</SignAssembly>
         <DelaySign>false</DelaySign>
         <PublicSign>true</PublicSign>
@@ -54,7 +58,7 @@
      <PropertyGroup>
          <Authors>Forticode</Authors>
          <Company>Forticode</Company>
-         <Version>6.2.0.0</Version>
+         <Version>6.3.0.0</Version>
          <!--<PackageId>Cipherise SDK</PackageId>  -->
          <Product>Cipherise .NET SDK</Product>
          <Copyright>Copyright © 2019</Copyright>
@@ -66,7 +70,7 @@
 
          <PackageTags>Cipherise;Forticode;authentication;authorisation;password;passwordless;multi;multifactor;mutli-factor;logon;login;saml;onetick;bidirectional;bi-directional</PackageTags>
 
-         <PackageReleaseNotes>Improved documentation.</PackageReleaseNotes>
+         <PackageReleaseNotes>Removed public signing.</PackageReleaseNotes>
          <Description>
              Cipherise does away with passwords and usernames, giving your customers an easy, secure
              login with their mobile device. With a simple, quick scan of a WaveCode, they can achieve

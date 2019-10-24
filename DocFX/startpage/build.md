@@ -1,4 +1,3 @@
----
 ## Build
 
 The Cipherise .NET SDK is built using the Visual Studio 2017 solution file CipheriseDotNetSDK.sln which produces the following binaries:
