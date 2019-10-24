@@ -7,10 +7,20 @@
 
     <PropertyGroup>
         <!-- DocFX Log and output folder-->
-        <DocFXOutputFolder>$(OutputPath)$(TargetFramework)\DocFX\</DocFXOutputFolder>
+        <DocFXOutputFolder>$(OutputPath)DocFX\</DocFXOutputFolder>
         <LogFile>$(DocFXOutputFolder)DocFXlog.txt</LogFile>
-        <LogLevel>Error</LogLevel>
-        <MetadataOutputFolder>$(DocFXOutputFolder).</MetadataOutputFolder>
+        <LogLevel>Warning</LogLevel>
+
+        <!-- Summary: docfx.json (build.content.src) doesnt accomodate for "-o Some/Where/Else"
+             DocFX uses MetadataOutputFolder for the '-o'  command line switch.  See docfx.console.targets.
+             This causees the generated metadata (CS api) not to found when docfx.json (build.content.src)
+             This issue can be seen by running docfx from the command line:
+               docfx -o Some/Where/Else
+             So although it would be nice to do the following line.  It wont work:
+                <MetadataOutputFolder>$(DocFXOutputFolder).</MetadataOutputFolder>
+        -->
+        <MetadataOutputFolder>.</MetadataOutputFolder>
+        <DocParameters>--maxParallelism 1</DocParameters>
     </PropertyGroup>
 
     <ItemGroup>
@@ -32,11 +42,6 @@
         <Content Include="images\CipheriseMedium.png" />
     </ItemGroup>
 
-    <Target Name="CleanDocFXWebsite" AfterTargets="AfterClean">
-        <Message Text="CleanDocFXWebsite: $(DocFXOutputFolder)" Importance="high"/>
-        <RemoveDir Directories="$(DocFXOutFolder)" />
-    </Target>
-
     <PropertyGroup>
         <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
         <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
@@ -48,8 +53,40 @@
         <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
 
         <SkipCopyBuildProduct>true</SkipCopyBuildProduct>
-
     </PropertyGroup>
+
+    <Target Name="DocFX_AfterClean" AfterTargets="Clean" Condition="$(TargetFramework) != '' AND $(TargetFrameworks.StartsWith($(TargetFramework)))">
+        <Message Importance="high" Text="DocFX_AfterClean:  $(DocFXOutputFolder) TargetFrameworks = $(TargetFrameworks)  TargetFramework = $(TargetFramework)" />
+        <RemoveDir Directories="$(DocFXOutFolder)" />
+        <MSBuild Projects="$(MSBuildProjectFile)" Targets="DocFX_RemoveFolders" Properties="Caller='DocFX_AfterClean'"/>
+    </Target>
+
+    <Target Name="DocFX_BeforeBuild" BeforeTargets="BeforeBuild">
+        <Message Importance="high" Text="DocFX_BeforeBuild: TargetFrameworks = $(TargetFrameworks)  TargetFramework = $(TargetFramework)" />
+        <PropertyGroup>
+            <FirstFramework>$(TargetFrameworks.StartsWith($(TargetFramework)))</FirstFramework>
+            <BuildDocFx>$(FirstFramework)</BuildDocFx>
+        </PropertyGroup>
+        <Message Importance="high" Text="DocFX_BeforeBuild: BuildDocFx = $(BuildDocFx)" />
+    </Target>
+
+    <Target Name="DocFX_AfterDocGenerateMetadata" AfterTargets="DocGenerateMetadata">
+        <Message Importance="high" Text="DocFX_AfterDocGenerateMetadata: TargetFrameworks = $(TargetFrameworks)  TargetFramework = $(TargetFramework)" />
+        <ItemGroup>
+            <DocFXSite Include="$(MetadataOutputFolder)\_CipheriseSite\**\*.*"/>
+        </ItemGroup>
+        <!-- Move  _CipheriseSite to bin/DocFX/_CipheriseSite -->
+        <Move  SourceFiles="@(DocFXSite)"
+               DestinationFiles="@(DocFXSite->'$(DocFXOutputFolder)_CipheriseSite\%(RecursiveDir)%(Filename)%(Extension)')"
+               Condition="$(BuildDocFx)"/>
+        <MSBuild Projects="$(MSBuildProjectFile)" Targets="DocFX_RemoveFolders" Properties="Caller='DocFX_AfterDocGenerateMetadata'" Condition="$(BuildDocFx)" />
+    </Target>
+
+    <Target Name="DocFX_RemoveFolders">
+        <Message Importance="high" Text="DocFX_RemoveFolders called by $(Caller)" />
+        <RemoveDir Directories="$(MetadataOutputFolder)\_CipheriseSite" />
+        <RemoveDir Directories=".\obj\api" />
+    </Target>
 
     <Target Name="CreateManifestResourceNames" />
     <Target Name="CoreCompile" />

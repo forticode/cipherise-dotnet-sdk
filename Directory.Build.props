@@ -39,11 +39,11 @@
         <RunCodeAnalysis>false</RunCodeAnalysis>
     </PropertyGroup>
 
-    <PropertyGroup Condition="Exists('$(SolutionDir)CipheriseSDKPublic.snk')">
+    <PropertyGroup Condition="Exists('..\CipheriseSDKPublic.snk')">
         <SignAssembly>true</SignAssembly>
         <DelaySign>false</DelaySign>
         <PublicSign>true</PublicSign>
-        <AssemblyOriginatorKeyFile>$(SolutionDir)CipheriseSDKPublic.snk</AssemblyOriginatorKeyFile>
+        <AssemblyOriginatorKeyFile>..\CipheriseSDKPublic.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
 
     <PropertyGroup Condition="Exists('..\CipheriseCommon\Cipherise.ico')">
@@ -54,7 +54,7 @@
      <PropertyGroup>
          <Authors>Forticode</Authors>
          <Company>Forticode</Company>
-         <Version>6.1.0.0</Version>
+         <Version>6.2.0.0</Version>
          <!--<PackageId>Cipherise SDK</PackageId>  -->
          <Product>Cipherise .NET SDK</Product>
          <Copyright>Copyright © 2019</Copyright>

@@ -10,7 +10,10 @@
 
         "dest": "obj/api",
         "filter": "docfxfilter.yml",
-        "force": true
+        "force": true,
+        "properties": {
+            "TargetFramework": "net472"
+        }
     }
   ],
     "build": {
@@ -25,7 +28,6 @@
                 "files": [
                     "api/*.md",
                     "articles/*.md",
-                    "startpage/*.md",
                     "toc.yml",
                     "*.md"
                 ],
@@ -54,7 +56,7 @@
                 "exclude": [ "obj/**" ]
             }
         ],
-        "dest": "../bin/DocFX/_CipheriseSite",
+        "dest": "./_CipheriseSite",
         "template": [
             "default",
             "./templates/cipherise"
