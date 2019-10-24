@@ -5,5 +5,5 @@ This may be done when, for example, a Cipherise integration is uninstalled.
 
 [!code[REVOKE_SERVICE_CODE](revokeservice.cs)]
 
-> [!Warning]
+> [!WARNING]
 > Revoking a service will disable it and as such deny future enrolments and authentications.

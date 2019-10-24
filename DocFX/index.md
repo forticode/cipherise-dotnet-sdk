@@ -1,1 +1,1 @@
-[!include[I_START_PAGE](<startpage\startpage.md>)]
+[!include[I_START_PAGE](startpage\startpage.md)]

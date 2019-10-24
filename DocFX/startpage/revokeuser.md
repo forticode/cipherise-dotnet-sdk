@@ -6,5 +6,5 @@ longer authorised for access. To regain access, the user must re-enrol.
 
 [!code[REVOKE_USER_CODE](revokeuser.cs)]
 
-> [!Warning]
+> [!WARNING]
 > Revoking a user will deny any future authentications to the service. The user must re-enrol to the service to allow authentications.

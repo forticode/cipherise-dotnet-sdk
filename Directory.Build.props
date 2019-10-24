@@ -43,7 +43,7 @@
         <SignAssembly>true</SignAssembly>
         <DelaySign>false</DelaySign>
         <PublicSign>true</PublicSign>
-        <AssemblyOriginatorKeyFile>CipheriseSDKPublic.snk</AssemblyOriginatorKeyFile>
+        <AssemblyOriginatorKeyFile>$(SolutionDir)CipheriseSDKPublic.snk</AssemblyOriginatorKeyFile>
     </PropertyGroup>
 
     <PropertyGroup Condition="Exists('..\CipheriseCommon\Cipherise.ico')">
@@ -54,7 +54,7 @@
      <PropertyGroup>
          <Authors>Forticode</Authors>
          <Company>Forticode</Company>
-         <Version>6.0.0.0</Version>
+         <Version>6.1.0.0</Version>
          <!--<PackageId>Cipherise SDK</PackageId>  -->
          <Product>Cipherise .NET SDK</Product>
          <Copyright>Copyright © 2019</Copyright>
@@ -66,7 +66,7 @@
 
          <PackageTags>Cipherise;Forticode;authentication;authorisation;password;passwordless;multi;multifactor;mutli-factor;logon;login;saml;onetick;bidirectional;bi-directional</PackageTags>
 
-         <PackageReleaseNotes>Cipherise .NET SDK - Initial public release.</PackageReleaseNotes>
+         <PackageReleaseNotes>Improved documentation.</PackageReleaseNotes>
          <Description>
              Cipherise does away with passwords and usernames, giving your customers an easy, secure
              login with their mobile device. With a simple, quick scan of a WaveCode, they can achieve

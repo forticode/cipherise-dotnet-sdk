@@ -18,7 +18,7 @@ ICipheriseServiceProvider SP = Cipherise.CipheriseSP.CreateServiceProvider("http
 From the [ICipheriseServiceProvider](../api/Cipherise.ICipheriseServiceProvider.html) interface all other 
 Cipherise functionality can be initiated, such as service management, user enrolments, user authentications and revocations.
 
-[!include[I_SERVE_MAN](<servicemanagement.md>)]
-[!include[I_USER_MAN](<usermanagement.md>)]
-[!include[I_AUTH](<authentication.md>)]
-[!include[I_ADV](<advanced.md>)]
+[!include[I_SERVE_MAN](servicemanagement.md)]
+[!include[I_USER_MAN](usermanagement.md)]
+[!include[I_AUTH](authentication.md)]
+[!include[I_ADV](advanced.md)]

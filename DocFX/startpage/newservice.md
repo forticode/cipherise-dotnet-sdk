@@ -4,7 +4,6 @@ A service can be registered using [ICipheriseServiceProvider.Register()](../api/
 
 [!code[NEW_SERVICE](newservice.cs)]
 
-> [!Note]
->It is the Service Providers responsibility to persist the service ID as the only
->way to reuse the same service is to pass the service ID to 
->[CreateServiceProvider()](../api/Cipherise.CipheriseSP.html#Cipherise_CipheriseSP_CreateServiceProvider_System_String_System_String_System_String_System_Int32_).
+> [!NOTE]
+> It is the Service Providers responsibility to persist the service ID. To reuse the same service pass its service ID to
+> [CreateServiceProvider()](../api/Cipherise.CipheriseSP.html#Cipherise_CipheriseSP_CreateServiceProvider_System_String_System_String_System_String_System_Int32_).

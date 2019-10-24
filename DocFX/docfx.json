@@ -45,8 +45,7 @@
         ],
         "globalMetadata": {
             "_appTitle": "Cipherise SDK",
-            "_appLogoPath": "./images/Forticode_logo_update.png",
-            "_appFaviconPath": "./images/cropped-icon_512-1-192x192.png",
+            "_appLogoPath": "./images/CipheriseMedium.png",
             "_appFooter": "Copyright &copy 2019 Forticode"
         },
         "__!__overwrite": [
@@ -56,6 +55,9 @@
             }
         ],
         "dest": "../bin/DocFX/_CipheriseSite",
-        "template": [ "default" ]
+        "template": [
+            "default",
+            "./templates/cipherise"
+        ]
     }
 }
