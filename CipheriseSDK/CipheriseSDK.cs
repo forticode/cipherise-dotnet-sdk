@@ -836,7 +836,7 @@ namespace Cipherise
                 return false;
 
             //Challenge for the APP to sign.
-            byte[] aSPChallenge = new byte[32];
+            byte[] aSPChallenge = new byte[16];
             aSPChallenge.FillRandom();
             string strSPChallenge = aSPChallenge.ToHexString();
 

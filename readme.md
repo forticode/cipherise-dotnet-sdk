@@ -1,4 +1,4 @@
-# **Cipherise .NET SDK** v6.3.0
+# **Cipherise .NET SDK** v6.4.0
 ## Introduction
 Cipherise does away with passwords and usernames, giving your customers an easy, secure
 login with their mobile device. With a simple, quick scan of a WaveCode, they can achieve 

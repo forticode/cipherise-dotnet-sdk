@@ -202,10 +202,16 @@ namespace Cipherise.Common
             return String.Format(strFormat, list);
         }
         //-------------------------------------------------------------------
+        private static RandomNumberGenerator s_RNG = null;
+        private static readonly object s_RNGLock = new object();
         public static void FillRandom(this byte[] array)
         {
-            Random random = new Random();
-            random.NextBytes(array);
+            lock (s_RNGLock)  //s_RNG may not be thread safe. Implementation dependant.
+            {
+                if (s_RNG == null)
+                    s_RNG = RandomNumberGenerator.Create();
+                s_RNG.GetBytes(array);
+            }
         }
         //-------------------------------------------------------------------
         private delegate bool ProcessJSONDelegate(HttpStatusCode eStatus, Stream stream);

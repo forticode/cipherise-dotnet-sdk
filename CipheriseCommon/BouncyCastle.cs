@@ -634,17 +634,6 @@ namespace Cipherise.Common
 
     internal class CryptoApiRandomGenerator : IRandomGenerator
     {
-        private readonly RandomNumberGenerator rndProv;
-
-        public CryptoApiRandomGenerator() : this(new RNGCryptoServiceProvider())
-        {
-        }
-
-        public CryptoApiRandomGenerator(RandomNumberGenerator rng)
-        {
-            this.rndProv = rng;
-        }
-
         public virtual void AddSeedMaterial(byte[] seed)
         {
         }
@@ -655,7 +644,7 @@ namespace Cipherise.Common
 
         public virtual void NextBytes(byte[] bytes)
         {
-            this.rndProv.GetBytes(bytes);
+            bytes.FillRandom();
         }
 
         public virtual void NextBytes(byte[] bytes, int start, int len)
@@ -670,14 +659,14 @@ namespace Cipherise.Common
             }
             if ((int)bytes.Length == len && start == 0)
             {
-                this.NextBytes(bytes);
+                NextBytes(bytes);
                 return;
             }
             byte[] numArray = new byte[len];
-            this.NextBytes(numArray);
+            NextBytes(numArray);
             Array.Copy(numArray, 0, bytes, start, len);
         }
-    }
+    }  // CryptoApiRandomGenerator
 
 } //namespace Cipherise.Common
 #endif
