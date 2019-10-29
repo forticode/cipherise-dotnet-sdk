@@ -1,4 +1,4 @@
-# **Cipherise .NET SDK** v6.4.0
+# **Cipherise .NET SDK** v6.4.1
 ## Introduction
 Cipherise does away with passwords and usernames, giving your customers an easy, secure
 login with their mobile device. With a simple, quick scan of a WaveCode, they can achieve 
@@ -26,7 +26,7 @@ The Cipherise .NET SDK is built using the Visual Studio 2017 solution file Ciphe
 |CipheriseSDK.dll| The Cipherise SDK.  |
 |CipheriseExample.exe| The executable of the example program. |
 
-## Dependancies
+## Dependencies
 
 The Cipherise .NET SDK depends on the following 3rd party libraries:
 

@@ -1,8 +1,12 @@
 <Project Sdk="Microsoft.Build.NoTargets/1.0.53">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.1;net472</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.1;net472;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Directory.Build.props" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="docfx.console" Version="2.45.1">

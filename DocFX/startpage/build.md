@@ -7,7 +7,7 @@ The Cipherise .NET SDK is built using the Visual Studio 2017 solution file Ciphe
 |CipheriseSDK.dll| The Cipherise SDK.  |
 |CipheriseExample.exe| The executable of the example program. |
 
-## Dependancies
+## Dependencies
 
 The Cipherise .NET SDK depends on the following 3rd party libraries:
 

@@ -11,7 +11,7 @@
         <IsLinux Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::Linux)))' == 'true'">true</IsLinux>
     </PropertyGroup>
 
-    <PropertyGroup Condition=" '$(CipheriseSDKPackage)' != 'true'">
+    <PropertyGroup Condition=" '$(GeneratePackageOnBuild)' != 'true'">
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
@@ -58,7 +58,7 @@
      <PropertyGroup>
          <Authors>Forticode</Authors>
          <Company>Forticode</Company>
-         <Version>6.4.0.0</Version>
+         <Version>6.4.1.0</Version>
          <!--<PackageId>Cipherise SDK</PackageId>  -->
          <Product>Cipherise .NET SDK</Product>
          <Copyright>Copyright © 2019</Copyright>
@@ -70,7 +70,7 @@
 
          <PackageTags>Cipherise;Forticode;authentication;authorisation;password;passwordless;multi;multifactor;mutli-factor;logon;login;saml;onetick;bidirectional;bi-directional</PackageTags>
 
-         <PackageReleaseNotes>Changed the RNG to use System.Security.Cryptography.RandomNumberGenerator.Create().</PackageReleaseNotes>
+         <PackageReleaseNotes>Added netstandard2.0 to targetframeworks.</PackageReleaseNotes>
          <Description>
 Cipherise does away with passwords and usernames, giving your customers an easy, secure login with their mobile device. With a simple, quick scan of a WaveCode, they can achieve multi-factor authentication in a single action.
 

@@ -1,7 +1,7 @@
 <Project>
-    <PropertyGroup>
-        <CipheriseSDKPackage>true</CipheriseSDKPackage>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    <PropertyGroup Condition="'$(Configuration)' == 'Release' ">
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
@@ -9,5 +9,4 @@
     <ItemGroup>
         <Compile Include="..\CipheriseCommon\*.cs" />
     </ItemGroup>
- 
 </Project>

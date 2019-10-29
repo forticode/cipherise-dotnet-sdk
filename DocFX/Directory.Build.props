@@ -1,4 +1,14 @@
 <Project>
+    <PropertyGroup>
+        <!-- 
+        'Visual Studio Command Prompt' sets this. But current DocFx builds bombs out when this is set when calling msbuild.exe.
+        Although its set to blank here, it doesnt actaully do anything (and therefore still bombs out).
+        Its here as a reminder.
+        See https://github.com/dotnet/docfx/issues/4782.  Fixed as of Oct 2019 but not tested.
+        -->
+        <VSINSTALLDIR></VSINSTALLDIR>
+    </PropertyGroup>
+    
     <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
 
     <PropertyGroup Condition="!$(IsWindows)">
@@ -61,7 +71,7 @@
         <MSBuild Projects="$(MSBuildProjectFile)" Targets="DocFX_RemoveFolders" Properties="Caller='DocFX_AfterClean'"/>
     </Target>
 
-    <Target Name="DocFX_BeforeBuild" BeforeTargets="BeforeBuild">
+    <Target Name="DocFX_BeforeBuild" BeforeTargets="BeforeBuild" Condition="'$(BuildDocFx)' != 'false'">
         <Message Importance="high" Text="DocFX_BeforeBuild: TargetFrameworks = $(TargetFrameworks)  TargetFramework = $(TargetFramework)" />
         <PropertyGroup>
             <FirstFramework>$(TargetFrameworks.StartsWith($(TargetFramework)))</FirstFramework>
